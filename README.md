@@ -33,6 +33,7 @@ These servers aim to demonstrate MCP features and the official SDKs.
 - **[Memory](src/memory)** - Knowledge graph-based persistent memory system.
 - **[Sequential Thinking](src/sequentialthinking)** - Dynamic and reflective problem-solving through thought sequences.
 - **[Time](src/time)** - Time and timezone conversion capabilities.
+- **[BBox Image Print](src/bboxImagePrint)** - Draw bounding boxes on images with customizable color and line width.
 
 ### Archived
 

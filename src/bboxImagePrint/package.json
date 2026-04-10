@@ -1,0 +1,38 @@
+{
+  "name": "@modelcontextprotocol/server-bbox-image-print",
+  "version": "0.1.0",
+  "description": "MCP server for drawing bounding boxes on images",
+  "license": "SEE LICENSE IN LICENSE",
+  "mcpName": "io.github.modelcontextprotocol/server-bbox-image-print",
+  "author": "Model Context Protocol a Series of LF Projects, LLC.",
+  "homepage": "https://modelcontextprotocol.io",
+  "bugs": "https://github.com/modelcontextprotocol/servers/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/modelcontextprotocol/servers.git"
+  },
+  "type": "module",
+  "bin": {
+    "mcp-server-bbox-image-print": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && shx chmod +x dist/*.js",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "test": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@vitest/coverage-v8": "^2.1.8",
+    "shx": "^0.3.4",
+    "typescript": "^5.8.2",
+    "vitest": "^2.1.8"
+  }
+}
