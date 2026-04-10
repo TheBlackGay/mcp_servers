@@ -63,24 +63,22 @@ server.registerTool(
     title: "Draw Bounding Box on Image",
     description: "Draw a bounding box on an image and return the result as base64. Accepts a base64-encoded image, bbox coordinates, and optional color/line width parameters.",
     inputSchema: {
-      imageBase64: z.string(),
-      bbox: {
-        x1: z.number(),
-        y1: z.number(),
-        x2: z.number(),
-        y2: z.number()
-      },
-      color: z.string().optional(),
-      lineWidth: z.number().optional()
+      imageBase64: z.string().describe("Base64 encoded image data"),
+      bbox: z.object({
+        x1: z.number().describe("Top-left x coordinate"),
+        y1: z.number().describe("Top-left y coordinate"),
+        x2: z.number().describe("Bottom-right x coordinate"),
+        y2: z.number().describe("Bottom-right y coordinate")
+      }).describe("Bounding box coordinates"),
+      color: z.string().optional().default("red").describe("Color of the bounding box (default: red)"),
+      lineWidth: z.number().optional().default(2).describe("Width of the bounding box line (default: 2)")
     },
     outputSchema: {
-      imageBase64: z.string()
+      imageBase64: z.string().describe("Base64 encoded output image")
     }
   },
   async (args: z.infer<typeof DrawBboxOnImageArgsSchema>) => {
-    const { imageBase64, bbox, color = "red", lineWidth = 2 } = args;
-    
-    const resultBase64 = await drawBboxWithPython(imageBase64, bbox, color, lineWidth);
+    const resultBase64 = await drawBboxWithPython(args.imageBase64, args.bbox, args.color ?? "red", args.lineWidth ?? 2);
     
     return {
       content: [{ type: "text" as const, text: "Successfully drew bounding box on image" }],
